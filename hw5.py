@@ -28,4 +28,4 @@ def main(filename):
         pickle.dump(counter.most_common(), fil)
 
 if __name__ == '__main__':
-    main("i_have_a_dream.txt") 
+    main("i_have_a_dream.txt")
