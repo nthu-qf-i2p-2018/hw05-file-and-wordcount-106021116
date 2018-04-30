@@ -6,11 +6,11 @@ import string
 import pickle
 
 def main(filename):
-    texfile=open(filename)
+    txtfile=open(filename)
     lines=txtfile.readlines()
     all_words=[]
     for line in lines:
-        word=line.split()
+        words=line.split()
         for word in words:
             word=word.strip(string.punctuation)
             if word!=(''):
@@ -18,8 +18,9 @@ def main(filename):
     from collections import Counter
     counter=Counter(all_words)
     
-    with open('wordcount.csv', 'w', newline='')as fin:
-        writer = csv.writer(fin, delimister=',')
+    counter.most_common()
+    with open('wordcount.csv','w',newline='')as csv_file:
+        writer=csv.writer(csv_file,delimiter=',',lineterminator='\n')
         writer.writerow(['word','count'])
         for idx, val in counter.most_common():
             writer.writerow([idx, val])
@@ -30,15 +31,5 @@ def main(filename):
     with open('wordcount.pkl','wb')as pkl_file:
         pickle.dump(counter,pkl_file)
         
-if __name__ == '__main__':
-    main("i_have_a_dream.txt")
-
-
-    ...
-
-    # BONUS: dump to a pickle file named "wordcount.pkl"
-    # hint: dump the Counter object directly
-
-
 if __name__ == '__main__':
     main("i_have_a_dream.txt")
